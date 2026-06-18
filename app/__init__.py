@@ -45,9 +45,9 @@ PLACES = [
 HOBBIES = [
     {
         "name": "Hackathons",
-        "description": "I love hackathons."
+        "description": "I love hackathons.",
+        "image": "vit.jpeg",
     },
-    
 ]
 
 
