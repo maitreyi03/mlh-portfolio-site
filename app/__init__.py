@@ -8,8 +8,8 @@ load_dotenv()
 app = Flask(__name__)
 
 # --- Site basics (placeholders — personalize these later) ---
-NAME = "Thomas"
-TAGLINE = "MLH Fellow/Software Engineer"
+NAME = "Enter Name"
+TAGLINE = "Enter role"
 PHOTO = "logo.jpg"  # 
 
 # Pages shown in the dynamic navigation bar. Add a route + an entry
@@ -20,16 +20,14 @@ PAGES = [
 ]
 
 ABOUT = (
-    "Hi, I'm Thomas, I love building useful things on the web! "
-    "I'm super excited to be a part of the MLH Fellowship! "
-    "I have a passion for software engineering and I'm always looking for new challenges and opportunities to grow."
-)
+    "Enter About Me section. "
+    )
 
 EDUCATION = [
     {
-        "school": "University of Waterloo",
-        "degree": "B.S. in Mathematics",
-        "period": "2025 — 2030",
+        "school": "Enter University",
+        "degree": "Enter Degree",
+        "period": "Enter Period",
     },
 ]
 
