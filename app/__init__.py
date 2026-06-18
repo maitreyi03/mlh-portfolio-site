@@ -9,8 +9,8 @@ app = Flask(__name__)
 
 # --- Site basics (placeholders — personalize these later) ---
 NAME = "Thomas"
-TAGLINE = "MLH Fellow · Software Engineer"
-PHOTO = "logo.jpg"  # replace with a real photo in app/static/img/
+TAGLINE = "MLH Fellow/Software Engineer"
+PHOTO = "logo.jpg"  # 
 
 # Pages shown in the dynamic navigation bar. Add a route + an entry
 # here and it automatically appears in the menu.
@@ -20,31 +20,16 @@ PAGES = [
 ]
 
 ABOUT = (
-    "Hi, I'm Thomas — a software engineer and MLH Fellow who likes building "
-    "useful things on the web. This portfolio is the starting point I'll keep "
-    "improving throughout the fellowship."
+    "Hi, I'm Thomas, I love building useful things on the web! "
+    "I'm super excited to be a part of the MLH Fellowship! "
+    "I have a passion for software engineering and I'm always looking for new challenges and opportunities to grow."
 )
-
-EXPERIENCES = [
-    {
-        "role": "Software Engineer",
-        "company": "Viggle",
-        "period": "2024 — Present",
-        "description": "Building product features and shipping to users.",
-    },
-    {
-        "role": "Software Engineering Intern",
-        "company": "Previous Company",
-        "period": "2023",
-        "description": "Worked across the stack on internal tooling.",
-    },
-]
 
 EDUCATION = [
     {
-        "school": "Your University",
-        "degree": "B.S. in Computer Science",
-        "period": "2021 — 2025",
+        "school": "University of Waterloo",
+        "degree": "B.S. in Mathematics",
+        "period": "2025 — 2030",
     },
 ]
 
@@ -59,20 +44,10 @@ PLACES = [
 
 HOBBIES = [
     {
-        "name": "Photography",
-        "description": "Capturing cities and landscapes on weekends.",
-        "image": "https://picsum.photos/seed/photography/600/400",
+        "name": "Hackathons",
+        "description": "I love hackathons."
     },
-    {
-        "name": "Hiking",
-        "description": "Getting outdoors and exploring new trails.",
-        "image": "https://picsum.photos/seed/hiking/600/400",
-    },
-    {
-        "name": "Coffee",
-        "description": "Trying new beans and pour-over methods.",
-        "image": "https://picsum.photos/seed/coffee/600/400",
-    },
+    
 ]
 
 
@@ -95,7 +70,6 @@ def index():
         tagline=TAGLINE,
         photo=PHOTO,
         about=ABOUT,
-        experiences=EXPERIENCES,
         education=EDUCATION,
         places=PLACES,
     )
