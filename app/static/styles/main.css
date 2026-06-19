@@ -222,3 +222,72 @@ body {
     color: #6b7280;
     font-size: 14px;
 }
+
+.builder-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.builder-card label {
+    margin-top: 6px;
+    color: var(--muted, #6b7280);
+    font-size: 0.8rem;
+}
+
+.builder-card input,
+.builder-card textarea {
+    padding: 8px;
+    border: 1px solid var(--muted, #d1d5db);
+    border-radius: 6px;
+    background: var(--bg, #fff);
+    color: var(--text, #111);
+    font: inherit;
+}
+
+.builder-card textarea {
+    min-height: 60px;
+    resize: vertical;
+}
+
+.remove-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    border: none;
+    background: none;
+    color: var(--muted, #999);
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.builder-actions {
+    display: flex;
+    gap: 10px;
+    margin: 16px 0;
+}
+
+.btn {
+    padding: 8px 14px;
+    border: 1px solid var(--muted, #ccc);
+    border-radius: 6px;
+    background: var(--card, #f4f4f6);
+    font: inherit;
+    cursor: pointer;
+}
+
+.btn-primary {
+    border-color: transparent;
+    background: var(--accent, #2563eb);
+    color: #fff;
+}
+
+.output {
+    padding: 14px;
+    overflow-x: auto;
+    border-radius: 8px;
+    background: var(--card, #1a1d27);
+    color: var(--text, #e5e7eb);
+    white-space: pre;
+}

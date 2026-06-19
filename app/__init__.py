@@ -46,6 +46,26 @@ HOBBIES = [
     },
 ]
 
+WORK_EXPERIENCES = [
+    {
+        "role": "Enter Role",
+        "company": "Enter Company",
+        "period": "20XX-20XX",
+        "description": "Enter what you worked on.",
+    },
+    {
+        "role": "Enter Role",
+        "company": "Enter Company",
+        "period": "20XX-20XX",
+        "description": "Enter what you worked on."
+    },
+    {
+        "role": "Enter Role",
+        "company": "Enter Company",
+        "period": "20XX-20XX",
+        "description": "Enter what you worked on."
+    },
+]
 
 @app.context_processor
 def inject_globals():
@@ -66,6 +86,7 @@ def index():
         tagline=TAGLINE,
         photo=PHOTO,
         about=ABOUT,
+        work_experiences=WORK_EXPERIENCES,
         education=EDUCATION,
         places=PLACES,
     )
