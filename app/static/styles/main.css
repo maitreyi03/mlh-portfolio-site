@@ -169,7 +169,17 @@ body {
     font-size: 14px;
 }
 
-/* --- Travel list --- */
+/* --- Travel map --- */
+#map {
+    height: 420px;
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    z-index: 0;
+}
+
+/* --- Travel list (legend / no-JS fallback) --- */
 .places {
     list-style: none;
     padding: 0;
@@ -186,9 +196,7 @@ body {
 /* --- Hobbies grid --- */
 .hobby-grid {
     display: grid;
-    /* auto-fill (not auto-fit) so a single card keeps a sane width
-       instead of stretching across the whole row */
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
 }
 
@@ -197,14 +205,11 @@ body {
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-    max-width: 360px;
 }
 
 .hobby-card img {
     width: 100%;
-    /* match the photo's 16:9 ratio so it frames cleanly instead of
-       being squished into a thin strip */
-    aspect-ratio: 16 / 9;
+    height: 160px;
     object-fit: cover;
     display: block;
 }
