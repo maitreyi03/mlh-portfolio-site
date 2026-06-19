@@ -40,9 +40,25 @@ PLACES = [
 
 HOBBIES = [
     {
-        "name": "Name",
-        "description": "Description.",
-        "image": "vit.jpeg",
+        "section": "Outdoor",
+        "hobbies": [
+            {"name": "Hiking", "description": "Exploring trails and nature.", "icon": "🥾"},
+            {"name": "Cycling", "description": "Long rides through the city and countryside.", "icon": "🚴"},
+        ],
+    },
+    {
+        "section": "Creative",
+        "hobbies": [
+            {"name": "Photography", "description": "Capturing moments and places.", "icon": "📷"},
+            {"name": "Sketching", "description": "Drawing portraits and landscapes.", "icon": "✏️"},
+        ],
+    },
+    {
+        "section": "Tech & Gaming",
+        "hobbies": [
+            {"name": "Hackathons", "description": "Building projects under pressure.", "image": "vit.jpeg"},
+            {"name": "Gaming", "description": "Strategy and indie games.", "icon": "🎮"},
+        ],
     },
 ]
 
