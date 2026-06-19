@@ -16,6 +16,22 @@
     </section>
 
     <section class="section">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            {% for group in skills %}
+            <div class="skill-group">
+                <h3 class="skill-group-title">{{ group.group }}</h3>
+                <div class="skill-tags">
+                    {% for item in group.skills %}
+                    <span class="skill-tag">{{ item }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="section">
     <h2>Work Experience</h2>
     {% for job in work_experiences %}
     <div class="card">

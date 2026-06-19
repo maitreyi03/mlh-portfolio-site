@@ -46,6 +46,21 @@ HOBBIES = [
     },
 ]
 
+SKILLS = [
+    {
+        "group": "Languages",
+        "skills": ["Language#1", "Language#2", "Language#3", "Language#4"],
+    },
+    {
+        "group": "Frameworks",
+        "skills": ["Framework#1", "Framework#2", "Framework#3", "Framework#4"],
+    },
+    {
+        "group": "Tools",
+        "skills": ["Tool#1", "Tool#2", "Tool#3", "Tool#4"],
+    },
+]
+
 WORK_EXPERIENCES = [
     {
         "role": "Enter Role",
@@ -86,6 +101,7 @@ def index():
         tagline=TAGLINE,
         photo=PHOTO,
         about=ABOUT,
+        skills=SKILLS,
         work_experiences=WORK_EXPERIENCES,
         education=EDUCATION,
         places=PLACES,

@@ -151,6 +151,43 @@ body {
     color: #1d539f;
 }
 
+/* --- Skills --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.skill-group {
+    background-color: white;
+    border-radius: 8px;
+    padding: 16px 20px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.skill-group-title {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #1d539f;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.skill-tag {
+    background-color: #e8eef8;
+    color: #1d539f;
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
 /* --- Cards (experience / education) --- */
 .card {
     background-color: white;
