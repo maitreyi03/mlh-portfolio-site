@@ -3,13 +3,30 @@ from datetime import datetime
 
 from flask import Flask, render_template
 from dotenv import load_dotenv
+from peewee import *
+import _osx_support
 
 load_dotenv()
 app = Flask(__name__)
 
+mydb = MySQLDatabase(
+    os.getenv("MYSQL_DATABASE"),
+    user=os.getenv("MYSQL_USER"),
+    password=os.getenv("MYSQL_PASSWORD"),
+    host=os.getenv("MYSQL_HOST"),
+    port=3306,
+)
+
+# Actually open the MySQL connection.
+mydb.connect(reuse_if_open=True)
+
+# Produce the output required by the assignment.
+print(mydb)
+print("Database connection active:", not mydb.is_closed())
+
 # --- Site basics (placeholders — personalize these later) ---
-NAME = "Enter Name"
-TAGLINE = "Enter Role"
+NAME = "Maitreyi Pareek"
+TAGLINE = "Student @ UCLA"
 PHOTO = "logo.jpg"  #
 
 # Pages shown in the dynamic navigation bar. Add a route + an entry
@@ -20,7 +37,7 @@ PAGES = [
 ]
 
 ABOUT = (
-    "Hi, I'm [Enter Name]. I am currently pursuing [Enter Major] at [Enter University] "
+    "Hi, I'm Maitreyi Pareek. I am currently pursuing a Masters in Applied AI, Data Science at UCLA "
     "and my background is in [xyz]. I am currently interested in [abc]."
 )
 
