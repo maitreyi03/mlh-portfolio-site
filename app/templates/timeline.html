@@ -1,0 +1,367 @@
+{% extends "base.html" %}
+
+{% block head %}
+{{ super() }}
+
+<style>
+    .timeline-page {
+        max-width: 850px;
+        margin: 0 auto;
+        padding: 40px 20px;
+    }
+
+    .timeline-header {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .timeline-header h1 {
+        margin-bottom: 10px;
+    }
+
+    .timeline-header p {
+        color: #666;
+    }
+
+    .timeline-form-card {
+        margin-bottom: 35px;
+        padding: 25px;
+        border-radius: 12px;
+        background: #ffffff;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .timeline-form {
+        display: grid;
+        gap: 16px;
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+    }
+
+    .form-field label {
+        font-weight: 600;
+    }
+
+    .form-field input,
+    .form-field textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #cccccc;
+        border-radius: 7px;
+        font: inherit;
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus {
+        border-color: #375acb;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(55, 90, 203, 0.12);
+    }
+
+    .form-field textarea {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+    .timeline-form button {
+        justify-self: start;
+        padding: 11px 22px;
+        border: none;
+        border-radius: 7px;
+        background: #375acb;
+        color: white;
+        cursor: pointer;
+        font: inherit;
+        font-weight: 600;
+    }
+
+    .timeline-form button:disabled {
+        cursor: wait;
+        opacity: 0.65;
+    }
+
+    #form-status {
+        min-height: 22px;
+        margin: 0;
+    }
+
+    #form-status.success {
+        color: #18794e;
+    }
+
+    #form-status.error {
+        color: #b42318;
+    }
+
+    .timeline-list {
+        display: grid;
+        gap: 18px;
+    }
+
+    .timeline-post {
+        padding: 22px;
+        border-left: 5px solid #375acb;
+        border-radius: 9px;
+        background: #ffffff;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+    }
+
+    .timeline-post-header {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        margin-bottom: 12px;
+    }
+
+    .timeline-post h3 {
+        margin: 0;
+    }
+
+    .timeline-email,
+    .timeline-date {
+        color: #6b7280;
+        font-size: 0.9rem;
+    }
+
+    .timeline-content {
+        margin: 0;
+        line-height: 1.6;
+        white-space: pre-wrap;
+    }
+
+    .timeline-message {
+        padding: 25px;
+        border: 1px dashed #aaaaaa;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    @media (max-width: 650px) {
+        .form-row {
+            grid-template-columns: 1fr;
+        }
+
+        .timeline-post-header {
+            flex-direction: column;
+        }
+
+        .timeline-form button {
+            width: 100%;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="timeline-page">
+    <header class="timeline-header">
+        <h1>My Timeline</h1>
+
+        <p>
+            Follow updates from my school, career, and software
+            engineering journey.
+        </p>
+    </header>
+
+    <section class="timeline-form-card">
+        <h2>Create a Timeline Post</h2>
+
+        <form id="timeline-form" class="timeline-form">
+            <div class="form-row">
+                <div class="form-field">
+                    <label for="name">Name</label>
+
+                    <input
+                        id="name"
+                        name="name"
+                        type="text"
+                        required
+                    >
+                </div>
+
+                <div class="form-field">
+                    <label for="email">Email</label>
+
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        required
+                    >
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label for="content">Timeline update</label>
+
+                <textarea
+                    id="content"
+                    name="content"
+                    placeholder="Share an update..."
+                    required
+                ></textarea>
+            </div>
+
+            <p id="form-status" role="status"></p>
+
+            <button id="submit-button" type="submit">
+                Publish Post
+            </button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Recent Timeline Posts</h2>
+
+        <div id="timeline-posts" class="timeline-list">
+            <div class="timeline-message">
+                Loading timeline posts...
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+<script>
+    const timelineEndpoint = "/api/timeline_post";
+
+    const timelineForm = document.querySelector("#timeline-form");
+    const timelinePosts = document.querySelector("#timeline-posts");
+    const formStatus = document.querySelector("#form-status");
+    const submitButton = document.querySelector("#submit-button");
+
+    function createTimelinePost(post) {
+        const article = document.createElement("article");
+        article.className = "timeline-post";
+
+        const header = document.createElement("div");
+        header.className = "timeline-post-header";
+
+        const identity = document.createElement("div");
+
+        const name = document.createElement("h3");
+        name.textContent = post.name || "Anonymous";
+
+        const email = document.createElement("div");
+        email.className = "timeline-email";
+        email.textContent = post.email || "";
+
+        identity.append(name, email);
+
+        const date = document.createElement("time");
+        date.className = "timeline-date";
+        date.textContent = post.created_at || "";
+
+        const content = document.createElement("p");
+        content.className = "timeline-content";
+        content.textContent = post.content || "";
+
+        header.append(identity, date);
+        article.append(header, content);
+
+        return article;
+    }
+
+    function displayTimelinePosts(posts) {
+        timelinePosts.replaceChildren();
+
+        if (posts.length === 0) {
+            const message = document.createElement("div");
+            message.className = "timeline-message";
+            message.textContent =
+                "There are no timeline posts yet. Add the first one!";
+
+            timelinePosts.append(message);
+            return;
+        }
+
+        const newestFirst = [...posts].sort(
+            (firstPost, secondPost) =>
+                Number(secondPost.id) - Number(firstPost.id)
+        );
+
+        newestFirst.forEach((post) => {
+            timelinePosts.append(createTimelinePost(post));
+        });
+    }
+
+    async function loadTimelinePosts() {
+        try {
+            const response = await fetch(timelineEndpoint);
+
+            if (!response.ok) {
+                throw new Error(
+                    `GET request failed: ${response.status}`
+                );
+            }
+
+            const data = await response.json();
+            const posts = data.timeline_posts || [];
+
+            displayTimelinePosts(posts);
+        } catch (error) {
+            console.error(error);
+
+            timelinePosts.innerHTML =
+                '<div class="timeline-message">' +
+                "Timeline posts could not be loaded. " +
+                "Check the Flask terminal and database connection." +
+                "</div>";
+        }
+    }
+
+    timelineForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        submitButton.disabled = true;
+        formStatus.className = "";
+        formStatus.textContent = "Publishing post...";
+
+        try {
+            const formData = new FormData(timelineForm);
+
+            const response = await fetch(timelineEndpoint, {
+                method: "POST",
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error(
+                    `POST request failed: ${response.status}`
+                );
+            }
+
+            timelineForm.reset();
+
+            formStatus.className = "success";
+            formStatus.textContent =
+                "Your timeline post was successfully added.";
+
+            await loadTimelinePosts();
+        } catch (error) {
+            console.error(error);
+
+            formStatus.className = "error";
+            formStatus.textContent =
+                "The post could not be added. Check the Flask terminal.";
+        } finally {
+            submitButton.disabled = false;
+        }
+    });
+
+    loadTimelinePosts();
+</script>
+{% endblock %}

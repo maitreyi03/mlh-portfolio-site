@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from dotenv import load_dotenv
 from peewee import *
 import _osx_support
@@ -42,6 +42,7 @@ PHOTO = "logo.jpg"  #
 PAGES = [
     {"name": "Home", "endpoint": "index"},
     {"name": "Hobbies", "endpoint": "hobbies"},
+    {"name": "Timeline", "endpoint": "timeline"},
 ]
 
 ABOUT = (
@@ -177,3 +178,11 @@ def get_time_line_post():
             for p in TimeLinePost.select().order_by(TimeLinePost.created_at.desc())
         ]
     }
+
+@app.route("/timeline")
+def timeline():
+    return render_template(
+        "timeline.html",
+        title="Timeline",
+        pages=PAGES
+    )
