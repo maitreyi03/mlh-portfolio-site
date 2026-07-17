@@ -10,15 +10,19 @@ from playhouse.shortcuts import model_to_dict
 load_dotenv()
 app = Flask(__name__)
 
-mydb = MySQLDatabase(
-    os.getenv("MYSQL_DATABASE"),
-    user=os.getenv("MYSQL_USER"),
-    password=os.getenv("MYSQL_PASSWORD"),
-    host=os.getenv("MYSQL_HOST"),
-    port=3306,
-)
-
-print(mydb)
+# Use an in-memory SQLite DB when running tests (TESTING=true) so the test
+# suite never touches the real MySQL. Otherwise connect to MySQL as usual.
+if os.getenv("TESTING") == "true":
+    print("Running in test mode")
+    mydb = SqliteDatabase("file:memory?mode=memory&cache=shared", uri=True)
+else:
+    mydb = MySQLDatabase(
+        os.getenv("MYSQL_DATABASE"),
+        user=os.getenv("MYSQL_USER"),
+        password=os.getenv("MYSQL_PASSWORD"),
+        host=os.getenv("MYSQL_HOST"),
+        port=3306,
+    )
 
 class TimeLinePost(Model):
     name = CharField()
@@ -163,11 +167,19 @@ def hobbies():
 
 @app.route('/api/timeline_post', methods=['POST'])
 def post_time_line_post():
-    name = request.form['name']
-    email = request.form['email']
-    content = request.form['content']
-    timeline_post = TimeLinePost.create(name=name, email=email, content=content)
+    name = request.form.get("name")
+    email = request.form.get("email")
+    content = request.form.get("content")
 
+    # Validate input before writing to the database (return 400 on bad input).
+    if not name:
+        return "Invalid name", 400
+    if not content:
+        return "Invalid content", 400
+    if not email or "@" not in email:
+        return "Invalid email", 400
+
+    timeline_post = TimeLinePost.create(name=name, email=email, content=content)
     return model_to_dict(timeline_post)
 
 @app.route('/api/timeline_post', methods=['GET'])
