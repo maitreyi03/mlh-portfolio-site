@@ -12,70 +12,148 @@
 {% endblock %}
 
 {% block content %}
-<section class="profile">
-    <div class="profile-picture">
-        <img
-            src="{{ url_for('static', filename='img/' ~ photo) }}"
-            alt="Photo of {{ name }}"
-        >
-    </div>
+<section class="lead-story">
+    <div class="container lead-story-grid">
+        <div>
+            <div class="lead-portrait">
+                <img
+                    src="{{ url_for('static', filename='img/' ~ photo) }}"
+                    alt="Photo of {{ name }}"
+                >
+            </div>
+            <p class="lead-caption">Pictured: {{ name }}, on assignment</p>
+        </div>
 
-    <h1>{{ name }}</h1>
-    <p class="tagline">{{ tagline }}</p>
+        <div>
+            <p class="byline">By <strong>The Editorial Desk</strong> &middot; Reporting from Los Angeles, Calif.</p>
+            <h2 class="headline">{{ tagline }}</h2>
+            <div class="lead-body">
+                <p>{{ about }}</p>
+            </div>
+        </div>
+    </div>
 </section>
 
 <div class="container">
-    <section class="section">
-        <h2>About Me</h2>
-        <p>{{ about }}</p>
-    </section>
+    <section class="section" id="experience">
+        <div class="section-label">
+            <span class="kicker">The Career Ledger</span>
+            <span class="kicker-rule"></span>
+        </div>
+        <h2 class="section-heading">Professional Experience</h2>
 
-    <section class="section">
-        <h2>Skills</h2>
-
-        <div class="skills-grid">
-            {% for group in skills %}
-                <div class="skill-group">
-                    <h3 class="skill-group-title">{{ group.group }}</h3>
-
-                    <div class="skill-tags">
-                        {% for item in group.skills %}
-                            <span class="skill-tag">{{ item }}</span>
-                        {% endfor %}
-                    </div>
+        <div class="ledger">
+            {% for job in work_experiences %}
+            <div class="ledger-entry">
+                <div class="ledger-period">{{ job.period }}</div>
+                <div>
+                    <h3 class="ledger-role">{{ job.role }}</h3>
+                    <p class="ledger-company">{{ job.company }}</p>
+                    <p class="ledger-description">{{ job.description }}</p>
                 </div>
+            </div>
             {% endfor %}
         </div>
     </section>
 
-    <section class="section">
-        <h2>Work Experience</h2>
+    <section class="section" id="education">
+        <div class="section-label">
+            <span class="kicker">The Record</span>
+            <span class="kicker-rule"></span>
+        </div>
+        <h2 class="section-heading">Education</h2>
 
-        {% for job in work_experiences %}
-            <div class="card">
-                <h3>{{ job.role }} — {{ job.company }}</h3>
-                <span class="meta">{{ job.period }}</span>
-                <p>{{ job.description }}</p>
-            </div>
-        {% endfor %}
-    </section>
-
-    <section class="section">
-        <h2>Education</h2>
-
-        {% for edu in education %}
-            <div class="card">
+        <div class="record-grid">
+            {% for edu in education %}
+            <div class="record-card">
                 <h3>{{ edu.school }}</h3>
-                <span class="meta">
-                    {{ edu.degree }} · {{ edu.period }}
-                </span>
+                <p class="record-degree">{{ edu.degree }}</p>
+                <span class="record-period">{{ edu.period }}</span>
             </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
+
+        <div class="record-sub">
+            <h4>Relevant Coursework</h4>
+            <ul class="pill-list">
+                {% for course in coursework %}
+                <li class="pill">{{ course }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="record-sub">
+            <h4>Campus Credits</h4>
+            <ul class="pill-list">
+                {% for credit in campus_credits %}
+                <li class="pill">{{ credit }}</li>
+                {% endfor %}
+            </ul>
+        </div>
     </section>
 
-    <section class="section">
-        <h2>Travel Map</h2>
-        <p>Cool places I've visited — click a pin for details:</p>
+    <section class="section" id="projects">
+        <div class="section-label">
+            <span class="kicker">Exhibits A&ndash;D</span>
+            <span class="kicker-rule"></span>
+        </div>
+        <h2 class="section-heading">Selected Projects</h2>
+
+        <div class="exhibit-grid">
+            {% for project in projects %}
+            <div class="exhibit-card">
+                <span class="exhibit-tag">{{ project.letter }}</span>
+                <p class="exhibit-kicker">{{ project.kicker }}</p>
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.description }}</p>
+
+                <div class="exhibit-tags">
+                    {% for tag in project.tags %}
+                    <span>{{ tag }}</span>
+                    {% endfor %}
+                </div>
+
+                <div class="exhibit-links">
+                    <a href="{{ project.github }}" target="_blank" rel="noopener">Case File &middot; GitHub</a>
+                    {% if project.has_paper %}
+                    <span class="exhibit-status">Paper on request</span>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="section" id="skills">
+        <div class="section-label">
+            <span class="kicker">The Lab Report</span>
+            <span class="kicker-rule"></span>
+        </div>
+        <h2 class="section-heading">Skills Detected</h2>
+
+        <div class="lab-report">
+            <dl>
+                {% for group in skills %}
+                <div class="lab-report-row">
+                    <dt>{{ group.group }}</dt>
+                    <dd>
+                        {% for item in group.skills %}
+                        <span class="detected">{{ item }}</span>
+                        {% endfor %}
+                    </dd>
+                </div>
+                {% endfor %}
+            </dl>
+        </div>
+    </section>
+
+    <section class="section" id="travel">
+        <div class="section-label">
+            <span class="kicker">Field Dispatches</span>
+            <span class="kicker-rule"></span>
+        </div>
+        <h2 class="section-heading">Places I've Filed From</h2>
+        <p>Cool places I've visited &mdash; click a pin for details:</p>
 
         <div
             id="map"

@@ -1,180 +1,22 @@
 {% extends "base.html" %}
 
-{% block head %}
-{{ super() }}
-
-<style>
-    .timeline-page {
-        max-width: 850px;
-        margin: 0 auto;
-        padding: 40px 20px;
-    }
-
-    .timeline-header {
-        margin-bottom: 30px;
-        text-align: center;
-    }
-
-    .timeline-header h1 {
-        margin-bottom: 10px;
-    }
-
-    .timeline-header p {
-        color: #666;
-    }
-
-    .timeline-form-card {
-        margin-bottom: 35px;
-        padding: 25px;
-        border-radius: 12px;
-        background: #ffffff;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-    }
-
-    .timeline-form {
-        display: grid;
-        gap: 16px;
-    }
-
-    .form-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-    }
-
-    .form-field {
-        display: flex;
-        flex-direction: column;
-        gap: 7px;
-    }
-
-    .form-field label {
-        font-weight: 600;
-    }
-
-    .form-field input,
-    .form-field textarea {
-        width: 100%;
-        padding: 12px;
-        border: 1px solid #cccccc;
-        border-radius: 7px;
-        font: inherit;
-    }
-
-    .form-field input:focus,
-    .form-field textarea:focus {
-        border-color: #375acb;
-        outline: none;
-        box-shadow: 0 0 0 3px rgba(55, 90, 203, 0.12);
-    }
-
-    .form-field textarea {
-        min-height: 120px;
-        resize: vertical;
-    }
-
-    .timeline-form button {
-        justify-self: start;
-        padding: 11px 22px;
-        border: none;
-        border-radius: 7px;
-        background: #375acb;
-        color: white;
-        cursor: pointer;
-        font: inherit;
-        font-weight: 600;
-    }
-
-    .timeline-form button:disabled {
-        cursor: wait;
-        opacity: 0.65;
-    }
-
-    #form-status {
-        min-height: 22px;
-        margin: 0;
-    }
-
-    #form-status.success {
-        color: #18794e;
-    }
-
-    #form-status.error {
-        color: #b42318;
-    }
-
-    .timeline-list {
-        display: grid;
-        gap: 18px;
-    }
-
-    .timeline-post {
-        padding: 22px;
-        border-left: 5px solid #375acb;
-        border-radius: 9px;
-        background: #ffffff;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
-    }
-
-    .timeline-post-header {
-        display: flex;
-        justify-content: space-between;
-        gap: 15px;
-        margin-bottom: 12px;
-    }
-
-    .timeline-post h3 {
-        margin: 0;
-    }
-
-    .timeline-email,
-    .timeline-date {
-        color: #6b7280;
-        font-size: 0.9rem;
-    }
-
-    .timeline-content {
-        margin: 0;
-        line-height: 1.6;
-        white-space: pre-wrap;
-    }
-
-    .timeline-message {
-        padding: 25px;
-        border: 1px dashed #aaaaaa;
-        border-radius: 8px;
-        text-align: center;
-    }
-
-    @media (max-width: 650px) {
-        .form-row {
-            grid-template-columns: 1fr;
-        }
-
-        .timeline-post-header {
-            flex-direction: column;
-        }
-
-        .timeline-form button {
-            width: 100%;
-        }
-    }
-</style>
-{% endblock %}
-
 {% block content %}
 <div class="timeline-page">
     <header class="timeline-header">
-        <h1>My Timeline</h1>
+        <div class="section-label">
+            <span class="kicker">Wire Dispatches</span>
+            <span class="kicker-rule"></span>
+        </div>
+        <h1 class="section-heading">Dispatches</h1>
 
         <p>
-            Follow updates from my school, career, and software
-            engineering journey.
+            Live updates from the school, career, and software
+            engineering beat &mdash; filed as they happen.
         </p>
     </header>
 
     <section class="timeline-form-card">
-        <h2>Create a Timeline Post</h2>
+        <h2>File a Dispatch</h2>
 
         <form id="timeline-form" class="timeline-form">
             <div class="form-row">
@@ -202,7 +44,7 @@
             </div>
 
             <div class="form-field">
-                <label for="content">Timeline update</label>
+                <label for="content">Dispatch</label>
 
                 <textarea
                     id="content"
@@ -215,13 +57,13 @@
             <p id="form-status" role="status"></p>
 
             <button id="submit-button" type="submit">
-                Publish Post
+                Publish Dispatch
             </button>
         </form>
     </section>
 
     <section>
-        <h2>Recent Timeline Posts</h2>
+        <h2>Latest Dispatches</h2>
 
         <div id="timeline-posts" class="timeline-list">
             <div class="timeline-message">
