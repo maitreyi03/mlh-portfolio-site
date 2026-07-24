@@ -50,15 +50,23 @@ PAGES = [
 ]
 
 ABOUT = (
-    "Hi, I'm Maitreyi Pareek. I am currently pursuing a Masters in Applied AI, Data Science at UCLA "
-    "and my background is in [xyz]. I am currently interested in [abc]."
+    "Hi, I'm Maitreyi Pareek, currently pursing a Master of Engineering in Applied AI at UCLA "
+    "I graudted with a B.S. in Computer Science & Engineering graduate from UCIrvine last year"
+    "I am currenly participating as a Production Engineering Fellow with the Meta & MLH Fellowship"
+    "and completing my Capstone Project as a Data Analyst with Takeda- a BioPharm company in LA"
+    "and working on the plasma fractionation process"
 )
 
 EDUCATION = [
     {
-        "school": "Enter University",
-        "degree": "B.S. in Enter Program",
-        "period": "20XX — 20XX",
+        "school": "University of California, Los Angeles (UCLA)",
+        "degree": "M.Eng., Data Science, Applied Machine Learning",
+        "period": "Sep 2025 — Aug 2026",
+    },
+    {
+        "school": "University of California, Irvine (UCI)",
+        "degree": "B.S., Computer Science & Engineering",
+        "period": "Sep 2021 — Jun 2025",
     },
 ]
 
@@ -98,36 +106,131 @@ HOBBIES = [
 SKILLS = [
     {
         "group": "Languages",
-        "skills": ["Language#1", "Language#2", "Language#3", "Language#4"],
+        "skills": ["Python", "Java", "C++", "React", "SQL"],
     },
     {
-        "group": "Frameworks",
-        "skills": ["Framework#1", "Framework#2", "Framework#3", "Framework#4"],
+        "group": "Systems & Backend",
+        "skills": [
+            "Databases", "OS", "Distributed Systems", "Multithreading",
+            "Concurrency", "Linux", "Docker", "CI/CD",
+        ],
     },
     {
-        "group": "Tools",
-        "skills": ["Tool#1", "Tool#2", "Tool#3", "Tool#4"],
+        "group": "Cloud & Tooling",
+        "skills": ["AWS", "GCP", "Git"],
+    },
+]
+
+PROJECTS = [
+    {
+        "letter": "A",
+        "title": "Reflective Hybrid RAG for Recommendations",
+        "kicker": "Agentic AI Project",
+        "description": (
+            "Improved top-1 recommendation accuracy 3× (12.5% → 37.5% HR@1) with a reflective "
+            "hybrid RAG system separating raw user history from synthesized preference memory. "
+            "Lifted personalization quality across ranking metrics (+25% HR@10) by combining dense "
+            "embeddings and sparse SPLADE retrieval with LLM-generated user personas."
+        ),
+        "tags": ["RAG", "LLM Agents", "SPLADE", "Recommender Systems"],
+        "github": "https://github.com/maitreyi03/AgentSocietyChallenge",
+        "has_paper": True,
+    },
+    {
+        "letter": "B",
+        "title": "Adaptive Subset Selection for Federated Learning",
+        "kicker": "FedAvg, FedProx",
+        "description": (
+            "Cut federated training cost 70% per client via adaptive coreset selection while "
+            "preserving accuracy under FedAvg on non-IID CIFAR-100 partitions. Built a reproducible "
+            "federated evaluation framework across 20 training rounds using ResNet-18 with "
+            "client-side subset selection under realistic non-IID constraints."
+        ),
+        "tags": ["Federated Learning", "ResNet-18", "CIFAR-100", "Adaptive Coreset Selection"],
+        "github": "https://github.com/maitreyi03/fed-craig",
+        "has_paper": True,
+    },
+    {
+        "letter": "C",
+        "title": "Virtual File System",
+        "kicker": "Systems Programming",
+        "description": (
+            "Engineered a virtual file system in Java with an I/O subsystem, open file table, "
+            "bitmap-based block allocation, and file descriptors, enabling directory management, "
+            "metadata tracking, and efficient block-level file access."
+        ),
+        "tags": ["Java", "Operating Systems", "File Systems"],
+        "github": "https://github.com/maitreyi03/Virtual-File-System/",
+        "has_paper": False,
+    },
+    {
+        "letter": "D",
+        "title": "Search Engine, Information Retrieval System",
+        "kicker": "Information Retrieval",
+        "description": (
+            "Built a Python search engine over 37,000 documents using a custom inverted index and "
+            "TF-IDF ranking, improving retrieval with stemming, term weighting, duplicate detection, "
+            "and multi-term query support."
+        ),
+        "tags": ["Python", "TF-IDF", "Inverted Index", "IR"],
+        "github": "https://github.com/ijena/search-engine",
+        "has_paper": False,
     },
 ]
 
 WORK_EXPERIENCES = [
     {
-        "role": "Enter Role",
-        "company": "Enter Company",
-        "period": "20XX-20XX",
-        "description": "Enter what you worked on.",
+        "role": "Production Engineering Fellow",
+        "company": "Meta & MLH Fellowship",
+        "period": "Jun 2026 – Aug 2026",
+        "description": (
+            "Working with Meta engineers on production engineering projects focused on "
+            "reliability and scalable infrastructure."
+        ),
     },
     {
-        "role": "Enter Role",
-        "company": "Enter Company",
-        "period": "20XX-20XX",
-        "description": "Enter what you worked on."
+        "role": "Data Analyst Intern",
+        "company": "Takeda",
+        "period": "Jun 2026 – Aug 2026",
+        "description": (
+            "Building AI/ML models for Takeda's plasma fractionation, leveraging PAT, "
+            "Databricks, SIMCA Online, and image processing to improve monitoring, "
+            "deviation detection, and process optimization."
+        ),
     },
     {
-        "role": "Enter Role",
-        "company": "Enter Company",
-        "period": "20XX-20XX",
-        "description": "Enter what you worked on."
+        "role": "Web Application QA Engineer",
+        "company": "UCI Office of Information and Technologies",
+        "period": "Apr 2023 – Jun 2025",
+        "description": (
+            "Created and conducted comprehensive exploratory and regression test plans "
+            "across 9 Canvas instructor tools, using Selenium and Postman to validate UI "
+            "workflows and API behavior, reporting 150+ bugs via Jira. Deployed branches on "
+            "Jenkins and simulated user interactions to uncover system-wide bugs and correlations."
+        ),
+    },
+    {
+        "role": "Research Assistant with Professor QV",
+        "company": "ZotPonics Lab, UC Irvine",
+        "period": "Jan 2024 – Feb 2025",
+        "description": (
+            "Built an IoT pipeline to transmit live pH, nutrient, and moisture sensor data "
+            "into MySQL through a Flask REST API and React Native dashboard. Trained and "
+            "deployed a CNN to detect plant health issues (nutrient deficiency, pH imbalance) "
+            "from leaf images."
+        ),
+    },
+    {
+        "role": "Software Engineering Intern",
+        "company": "BRDG Research – Internship",
+        "period": "Jun 2024 – Sep 2024",
+        "description": (
+            "Developed an end-to-end PVC repurposing solution — a full-stack donation intake "
+            "application built with Python, Flask, and MySQL that let users upload images and "
+            "receive classification feedback. Integrated a fine-tuned MobileNetV2 image "
+            "classifier using transfer learning to identify PVC-containing items, and "
+            "authored two first-authored technical papers on the AI-enhanced recycling system."
+        ),
     },
 ]
 
@@ -152,6 +255,7 @@ def index():
         about=ABOUT,
         skills=SKILLS,
         work_experiences=WORK_EXPERIENCES,
+        projects=PROJECTS,
         education=EDUCATION,
         places=PLACES,
     )
